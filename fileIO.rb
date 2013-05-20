@@ -11,7 +11,15 @@ class PlanoCartesiano
         def getVertice(index)
                 return @plano[index]
         end
-
+	def getAllVertice
+		@plano.each {|key, value| print "#{key} "; getValue(value)}
+	end
+	def getValue(value)
+		value.each do |v|
+			print "#{v} "
+		end
+		puts
+	end
 end
 
 class FileIO
@@ -29,4 +37,4 @@ end
 
 fileIO = FileIO.new
 plano = fileIO.lerCartesianoNoArquivo("arquivo")
-puts plano.getVertice("1")
+plano.getAllVertice
