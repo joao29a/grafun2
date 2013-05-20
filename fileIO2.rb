@@ -1,25 +1,25 @@
-class PlanoCartesiano
+class Graph
 
         def initialize()
-                @plano = Hash.new
+                @graph = Hash.new
         end
 
         def addVertice(index)
-                @plano[index]
+                @graph[index]
         end
 	def addEdge(index,a)
-		if (@plano[index]==nil)
-			@plano[index] = [a]
+		if (@graph[index]==nil)
+			@graph[index] = [a]
 		else
-			@plano[index] = @plano[index].push(a);
+			@graph[index] = @graph[index].push(a);
 		end
 	end
 
         def getVertice(index)
-                return @plano[index]
+                return @graph[index]
         end
 	def getAllVertice
-		@plano.each {|key, value| print "Vertex #{key}: "; getValue(value)}
+		@graph.each {|key, value| print "Vertex #{key}: "; getValue(value)}
 	end
 	def getValue(value)
 		value.each do |v|
@@ -30,8 +30,8 @@ class PlanoCartesiano
 end
 
 class FileIO
-        def lerCartesianoNoArquivo(inputFile)
-                plano = PlanoCartesiano.new
+        def lerGrafoNoArquivo(inputFile)
+                graph = Graph.new
                 file = File.new(inputFile,"r")
 		edges = false
                 while (line = file.gets)
@@ -41,16 +41,16 @@ class FileIO
 				next
                         end
 			if (!edges)
-				plano.addVertice(splited[0])
+				graph.addVertice(splited[0])
 			else
-				plano.addEdge(splited[0],splited[1]);
+				graph.addEdge(splited[0],splited[1]);
 			end
                 end
                 file.close()
-                return plano
+                return graph
         end
 end
 
 fileIO = FileIO.new
-plano = fileIO.lerCartesianoNoArquivo("arquivo2")
-plano.getAllVertice
+graph = fileIO.lerGrafoNoArquivo("arquivo2")
+graph.getAllVertice
