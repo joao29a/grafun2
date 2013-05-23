@@ -7,7 +7,7 @@ def hierholzer(g)
 		c.unshift(u) #insert in the front of the array
 		while (!g[u].edges.empty?)
 			s.push(u)
-			v = g[u].edges.delete_at(0);
+			v = g[u].edges.delete(g[u].edges.first[0])
 			g[v].edges.delete(u);
 			u = v
 		end

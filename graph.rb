@@ -1,5 +1,5 @@
 class Vertex
-	attr_accessor :edges
+	attr_accessor :edges, :index
 	
 	def initialize(vertex)
 		@vertex = vertex
@@ -7,10 +7,9 @@ class Vertex
 	
 	def addAdj(edge)
 		if (@edges==nil)
-			@edges = [edge]
-		else
-			@edges.push(edge);
-		end
+			@edges = Hash.new
+		end		
+		@edges[edge] = edge
 	end
 
 	def getAdjacency
@@ -20,6 +19,7 @@ class Vertex
 	def getVertex
 		return @vertex
 	end
+	
 end
 
 class Graph
