@@ -15,7 +15,8 @@ def getClosest(u,g)
 	return smaller,smallerDist
 end
 
-def tspNN(g)
+def tspNN(graph)
+	g = Marshal.load(Marshal.dump(graph))
 	v0 = g.getPlane.first[0]
 	c = [v0]
 	v = v0

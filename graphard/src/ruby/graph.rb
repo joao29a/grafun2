@@ -69,4 +69,8 @@ class CartesianPlane
 	def getPlane
 		return @plane
 	end
+
+	def getDistances
+		return @distances
+	end
 end
