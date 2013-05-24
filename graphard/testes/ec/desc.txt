@@ -1,0 +1,11 @@
+01 - exemplo do material (slides)
+02 - grafo ciclo com 5 vértices
+03 - grafo com 5 ciclos de tamanho 3 (11 vértices)
+04 - grafo em forma de flor com 4 pétalas de 3 vértices (9 vértices)
+05 - grafo completo com 9 vértices
+06 - grafo ciclo com 1000 vértices
+07 - grafo com 1000 ciclos de tamanho 3 (2001 vértices)
+08 - grafo em forma de flor com 1000 pétalas de 3 vértices (2001 vértices)
+09 - grafo completo com 299 vértices
+10 - grafo com 10000 ciclos de tamanho 3 (20001 vértices)
+11 - grafo em forma de flor com 10000 pétalas de 3 vértices (20001 vértices)
