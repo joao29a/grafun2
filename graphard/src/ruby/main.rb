@@ -1,29 +1,32 @@
 load 'fileIO.rb'
-load 'tspnn.rb'
-load 'fileEC.rb'
 load 'graph.rb'
-load 'hierholzer.rb'
+load 'algorithms/tspnn.rb'
+load 'algorithms/hierholzer.rb'
 
 if(ARGV[0]=="tsp-nn")
-	fileIO = FileTSP.new
-	graph = fileIO.lerCartesianoNoArquivo(ARGV[1])
-	graph.calcDistancias
 
-	res = tspNN(graph)
-	custo = res[0]
-	tsp = res[1]
+	fileTSP = FileTSP.new
+	plane = CartesianPlane.new
+	fileTSP.readGraphInFile(ARGV[1],plane)
+	plane.calcDistances
 
-	puts "#{custo}"
-	tsp.each do |v|
+	cost,tspRes = tspNN(plane)
+
+	puts "#{cost}"
+	tspRes.each do |v|
 		puts "#{v}"
 	end
+
 elsif(ARGV[0]=="ec")
+
 	fileEC = FileEC.new
-	graph = fileEC.lerGrafoNoArquivo(ARGV[1])
+	graph = Graph.new 
+	fileEC.readGraphInFile(ARGV[1],graph)
 
 	eulerian = hierholzer(graph.getGraph)
 
 	eulerian.each do |v|
 		puts "#{v}"
 	end
+
 end
