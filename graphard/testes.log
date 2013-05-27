@@ -1,112 +1,339 @@
-src/ruby/run ec testes/ec/01.g: OK (tempo: 23ms)
-src/ruby/run ec testes/ec/02.g: OK (tempo: 27ms)
-src/ruby/run ec testes/ec/03.g: OK (tempo: 32ms)
-src/ruby/run ec testes/ec/04.g: OK (tempo: 28ms)
-src/ruby/run ec testes/ec/05.g: OK (tempo: 30ms)
-src/ruby/run ec testes/ec/06.g: OK (tempo: 45ms)
-src/ruby/run ec testes/ec/07.g: OK (tempo: 68ms)
-src/ruby/run ec testes/ec/08.g: OK (tempo: 70ms)
-src/ruby/run ec testes/ec/09.g: OK (tempo: 471ms)
-src/ruby/run ec testes/ec/10.g: OK (tempo: 387ms)
-src/ruby/run ec testes/ec/11.g: OK (tempo: 371ms)
-Total: 11  Errors: 0 (1s 559ms)
-src/ruby/run tsp-nn testes/tsp/cormen/35-2.tsp: OK (custo: 16, tempo: 29ms)
-src/ruby/run tsp-nn testes/tsp/tsplib/a280.tsp: OK (custo: 3157, tempo: 461ms)
-src/ruby/run tsp-nn testes/tsp/tsplib/berlin52.tsp: OK (custo: 8980, tempo: 46ms)
-src/ruby/run tsp-nn testes/tsp/tsplib/bier127.tsp: OK (custo: 135737, tempo: 120ms)
-src/ruby/run tsp-nn testes/tsp/tsplib/d493.tsp: OK (custo: 41665, tempo: 1s 549ms)
-src/ruby/run tsp-nn testes/tsp/tsplib/pcb1173.tsp: OK (custo: 71978, tempo: 9s 517ms)
-Total: 6  Errors: 0 (11s 725ms)
-src/ruby/run tsp-mst testes/tsp/cormen/35-2.tsp: Fail
-  ** STDOUT **
-  ** STDERR **
-  ** ERRORS **
-    formatação: poucos vértices
-src/ruby/run tsp-mst testes/tsp/tsplib/a280.tsp: Fail
-  ** STDOUT **
-  ** STDERR **
-  ** ERRORS **
-    formatação: poucos vértices
-src/ruby/run tsp-mst testes/tsp/tsplib/berlin52.tsp: Fail
-  ** STDOUT **
-  ** STDERR **
-  ** ERRORS **
-    formatação: poucos vértices
-src/ruby/run tsp-mst testes/tsp/tsplib/bier127.tsp: Fail
-  ** STDOUT **
-  ** STDERR **
-  ** ERRORS **
-    formatação: poucos vértices
-src/ruby/run tsp-mst testes/tsp/tsplib/d493.tsp: Fail
-  ** STDOUT **
-  ** STDERR **
-  ** ERRORS **
-    formatação: poucos vértices
-src/ruby/run tsp-mst testes/tsp/tsplib/pcb1173.tsp: Fail
-  ** STDOUT **
-  ** STDERR **
-  ** ERRORS **
-    formatação: poucos vértices
-Total: 6  Errors: 6 (871ms)
-src/ruby/run tsp-nn-2opt testes/tsp/cormen/35-2.tsp: Fail
-  ** STDOUT **
-  ** STDERR **
-  ** ERRORS **
-    formatação: poucos vértices
+src/ruby/run ec testes/ec/01.g: OK (tempo: 17ms)
+src/ruby/run ec testes/ec/02.g: OK (tempo: 25ms)
+src/ruby/run ec testes/ec/03.g: OK (tempo: 24ms)
+src/ruby/run ec testes/ec/04.g: OK (tempo: 27ms)
+src/ruby/run ec testes/ec/05.g: OK (tempo: 25ms)
+src/ruby/run ec testes/ec/06.g: OK (tempo: 38ms)
+src/ruby/run ec testes/ec/07.g: OK (tempo: 49ms)
+src/ruby/run ec testes/ec/08.g: OK (tempo: 57ms)
+src/ruby/run ec testes/ec/09.g: OK (tempo: 431ms)
+src/ruby/run ec testes/ec/10.g: OK (tempo: 352ms)
+src/ruby/run ec testes/ec/11.g: OK (tempo: 361ms)
+Total: 11  Errors: 0 (1s 413ms)
+src/ruby/run tsp-nn testes/tsp/cormen/35-2.tsp: OK (custo: 16, tempo: 28ms)
+src/ruby/run tsp-nn testes/tsp/tsplib/a280.tsp: OK (custo: 3157, tempo: 716ms)
+src/ruby/run tsp-nn testes/tsp/tsplib/berlin52.tsp: OK (custo: 8980, tempo: 50ms)
+src/ruby/run tsp-nn testes/tsp/tsplib/bier127.tsp: OK (custo: 135737, tempo: 150ms)
+src/ruby/run tsp-nn testes/tsp/tsplib/d493.tsp: OK (custo: 41665, tempo: 2s 531ms)
+src/ruby/run tsp-nn testes/tsp/tsplib/pcb1173.tsp: OK (custo: 71978, tempo: 16s 668ms)
+Total: 6  Errors: 0 (20s 146ms)
+src/ruby/run tsp-mst testes/tsp/cormen/35-2.tsp: OK (custo: 17, tempo: 20ms)
+src/ruby/run tsp-mst testes/tsp/tsplib/a280.tsp: OK (custo: 3770, tempo: 933ms)
+src/ruby/run tsp-mst testes/tsp/tsplib/berlin52.tsp: OK (custo: 10402, tempo: 55ms)
+src/ruby/run tsp-mst testes/tsp/tsplib/bier127.tsp: OK (custo: 155763, tempo: 159ms)
+src/ruby/run tsp-mst testes/tsp/tsplib/d493.tsp: OK (custo: 46507, tempo: 3s 633ms)
+src/ruby/run tsp-mst testes/tsp/tsplib/pcb1173.tsp: OK (custo: 82506, tempo: 24s 119ms)
+Total: 6  Errors: 0 (28s 923ms)
+src/ruby/run tsp-nn-2opt testes/tsp/cormen/35-2.tsp: OK (custo: 16, tempo: 25ms)
 src/ruby/run tsp-nn-2opt testes/tsp/tsplib/a280.tsp: Fail
   ** STDOUT **
+    3115
+    1
+    280
+    2
+    3
+    279
+    278
+    4
+    277
+    276
+    275
+    274
+    273
+    272
+    271
+    16
+    17
+    18
+    19
+    20
+    21
+    128
+    127
+    126
+    125
+    30
+    31
+    32
+    29
+    28
+    27
+    26
+    22
+    25
+    23
+    24
+    14
+    13
+    12
+    11
+    10
+    8
+    7
+    9
+    6
+    5
+    260
+    259
+    258
+    257
+    254
+    253
+    208
+    207
+    210
+    209
+    252
+    255
+    256
+    249
+    248
+    247
+    244
+    241
+    240
+    239
+    238
+    231
+    232
+    233
+    234
+    235
+    236
+    237
+    246
+    245
+    243
+    242
+    250
+    251
+    230
+    229
+    228
+    227
+    226
+    225
+    224
+    223
+    222
+    219
+    218
+    215
+    214
+    211
+    212
+    213
+    216
+    217
+    220
+    221
+    203
+    202
+    200
+    144
+    143
+    142
+    141
+    140
+    139
+    138
+    137
+    136
+    135
+    134
+    270
+    269
+    268
+    267
+    266
+    265
+    264
+    263
+    262
+    261
+    15
+    133
+    132
+    131
+    130
+    129
+    154
+    155
+    153
+    156
+    152
+    151
+    177
+    176
+    181
+    180
+    179
+    178
+    150
+    149
+    148
+    147
+    146
+    145
+    199
+    198
+    197
+    194
+    195
+    196
+    201
+    193
+    192
+    191
+    190
+    189
+    188
+    187
+    185
+    184
+    183
+    182
+    161
+    162
+    163
+    164
+    165
+    166
+    167
+    168
+    169
+    101
+    100
+    99
+    98
+    93
+    94
+    95
+    96
+    97
+    92
+    91
+    90
+    89
+    81
+    80
+    79
+    76
+    75
+    74
+    73
+    72
+    71
+    70
+    67
+    66
+    65
+    64
+    63
+    62
+    118
+    61
+    60
+    43
+    42
+    41
+    40
+    39
+    38
+    37
+    36
+    35
+    34
+    33
+    124
+    123
+    122
+    121
+    120
+    119
+    157
+    158
+    159
+    160
+    175
+    174
+    173
+    106
+    105
+    104
+    103
+    102
+    170
+    171
+    172
+    107
+    108
+    110
+    111
+    112
+    88
+    83
+    82
+    84
+    85
+    86
+    116
+    115
+    114
+    113
+    87
+    117
+    59
+    44
+    45
+    46
+    47
+    48
+    49
+    50
+    51
+    52
+    53
+    54
+    55
+    56
+    57
+    58
+    68
+    69
+    77
+    78
+    109
+    186
+    204
+    205
+    206
+    1
   ** STDERR **
   ** ERRORS **
-    formatação: poucos vértices
-src/ruby/run tsp-nn-2opt testes/tsp/tsplib/berlin52.tsp: Fail
-  ** STDOUT **
-  ** STDERR **
-  ** ERRORS **
-    formatação: poucos vértices
-src/ruby/run tsp-nn-2opt testes/tsp/tsplib/bier127.tsp: Fail
-  ** STDOUT **
-  ** STDERR **
-  ** ERRORS **
-    formatação: poucos vértices
-src/ruby/run tsp-nn-2opt testes/tsp/tsplib/d493.tsp: Fail
-  ** STDOUT **
-  ** STDERR **
-  ** ERRORS **
-    formatação: poucos vértices
-src/ruby/run tsp-nn-2opt testes/tsp/tsplib/pcb1173.tsp: Fail
-  ** STDOUT **
-  ** STDERR **
-  ** ERRORS **
-    formatação: poucos vértices
-Total: 6  Errors: 6 (857ms)
+    Custo
+      Expected: 3151
+      Result  : 3115
+src/ruby/run tsp-nn-2opt testes/tsp/tsplib/berlin52.tsp: OK (custo: 8980, tempo: 57ms)
+src/ruby/run tsp-nn-2opt testes/tsp/tsplib/bier127.tsp: OK (custo: 135737, tempo: 204ms)
+src/ruby/run tsp-nn-2opt testes/tsp/tsplib/d493.tsp: OK (custo: 41665, tempo: 3s 474ms)
+src/ruby/run tsp-nn-2opt testes/tsp/tsplib/pcb1173.tsp: OK (custo: 71978, tempo: 21s 168ms)
+Total: 6  Errors: 1 (26s 671ms)
 src/ruby/run tsp-mst-2opt testes/tsp/cormen/35-2.tsp: Fail
   ** STDOUT **
+    15
+    1
+    2
+    3
+    8
+    6
+    5
+    4
+    7
+    1
   ** STDERR **
   ** ERRORS **
-    formatação: poucos vértices
-src/ruby/run tsp-mst-2opt testes/tsp/tsplib/a280.tsp: Fail
-  ** STDOUT **
-  ** STDERR **
-  ** ERRORS **
-    formatação: poucos vértices
-src/ruby/run tsp-mst-2opt testes/tsp/tsplib/berlin52.tsp: Fail
-  ** STDOUT **
-  ** STDERR **
-  ** ERRORS **
-    formatação: poucos vértices
-src/ruby/run tsp-mst-2opt testes/tsp/tsplib/bier127.tsp: Fail
-  ** STDOUT **
-  ** STDERR **
-  ** ERRORS **
-    formatação: poucos vértices
-src/ruby/run tsp-mst-2opt testes/tsp/tsplib/d493.tsp: Fail
-  ** STDOUT **
-  ** STDERR **
-  ** ERRORS **
-    formatação: poucos vértices
-src/ruby/run tsp-mst-2opt testes/tsp/tsplib/pcb1173.tsp: Fail
-  ** STDOUT **
-  ** STDERR **
-  ** ERRORS **
-    formatação: poucos vértices
-Total: 6  Errors: 6 (857ms)
+    Custo
+      Expected: 16
+      Result  : 15
+src/ruby/run tsp-mst-2opt testes/tsp/tsplib/a280.tsp: 

@@ -3,6 +3,8 @@ load 'graph.rb'
 load 'algorithms/tspnn.rb'
 load 'algorithms/hierholzer.rb'
 load 'algorithms/tsp2opt.rb'
+load 'algorithms/tspmst.rb'
+load 'algorithms/heap.rb'
 
 def printVertexs(vertexs)
 	vertexs.each do |v|
@@ -10,19 +12,7 @@ def printVertexs(vertexs)
 	end
 end
 
-if("tsp-nn"==ARGV[0])
-
-	fileTSP = FileTSP.new
-	plane = CartesianPlane.new
-	fileTSP.readGraphInFile(ARGV[1],plane)
-	plane.calcDistances
-
-	cost,tspPath = tspNN(plane)
-
-	puts "#{cost}"
-	printVertexs(tspPath)
-
-elsif("ec"==ARGV[0])
+if("ec"==ARGV[0])
 
 	fileEC = FileEC.new
 	graph = Graph.new 
@@ -31,18 +21,28 @@ elsif("ec"==ARGV[0])
 	eulerian = hierholzer(graph.getGraph)
 
 	printVertexs(eulerian)
-elsif("tsp-nn-2opt"==ARGV[0])
 
+else
 	fileTSP = FileTSP.new
-        plane = CartesianPlane.new
-        fileTSP.readGraphInFile(ARGV[1],plane)
-        plane.calcDistances
+	plane = CartesianPlane.new
+	fileTSP.readGraphInFile(ARGV[1],plane)
+	plane.calcDistances
+	
+	if("tsp-nn"==ARGV[0])
+		cost,tspPath = tspNN(plane)
+	
+	elsif("tsp-mst"==ARGV[0])
+		cost,tspPath = tspMst(plane)
 
-        cost,tspPath = tspNN(plane)
+	elsif("tsp-nn-2opt"==ARGV[0])
+		cost,tspPath = tspNN(plane)
+		cost,tspPath = tsp2opt(tspPath,cost,plane)
 
-	newCost,newTspPath = tsp2opt(tspPath,cost,plane)
+	elsif("tsp-mst-2opt"==ARGV[0])
+		cost,tspPath = tspMst(plane)
+		cost,tspPath = tsp2opt(tspPath,cost,plane)
 
-        puts "#{newCost}"
-        printVertexs(newTspPath)
-
+	end
+	puts cost
+	printVertexs(tspPath)
 end
