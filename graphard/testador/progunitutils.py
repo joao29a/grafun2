@@ -21,8 +21,9 @@ def run_progs_cases(check_fun, progs, cases, reporter):
 def create_test_cases(check_fun, progs, cases):
     tests = []
     for prog in progs:
+        m = max(len(prog.desc() + ' ' + case.input) for case in cases)
         for case in cases:
-            description = prog.desc() + ' ' + case.input
+            description = (prog.desc() + ' ' + case.input).ljust(m)
             program = prog.create_program([case.get_abs_input()])
             check = case.create_check(check_fun)
             tests.append(TestCase(description, program, check))

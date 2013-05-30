@@ -1,5 +1,4 @@
-
-def tsp2opt(t,cost, g)
+def tsp2opt(t,g)
 	while true
 		deltaMax  = 0
 		best = nil
@@ -41,11 +40,9 @@ def tsp2opt(t,cost, g)
 			a,b,c,d = best
 			aux = t[b]
 			t[b] = t[c]
-			t[c] = aux 
-			cost -= deltaMax	
+			t[c] = aux
 		else 
-			return cost,t
+			return t
 		end
 	end
 end
-

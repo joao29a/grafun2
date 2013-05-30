@@ -19,21 +19,16 @@ CHECKERS = {
 
 class MyReporter(SimpleReporter):
     def __init__(self):
-        SimpleReporter.__init__(self, 'testes.log')
-        self.stopwatch_test = Stopwatch()
-
-    def start_test(self, test_case):
-        super(MyReporter, self).start_test(test_case)
-        self.stopwatch_test.start()
+        SimpleReporter.__init__(self, u'testes.log')
 
     def _on_success(self, test_case, test_result):
-        if 'tsp' in test_case.description:
-            custo = test_result.program_result.out.splitlines()[0]
-            tempo = self.stopwatch_test.elapsed_str()
-            self._write('OK (custo: %s, tempo: %s)\n' % (custo, tempo))
+        if u'tsp' in test_case.description:
+            cust = test_result.program_result.out.splitlines()[0]
+            time = test_result.program_result.time
+            self._write(u'OK (custo: %s, tempo: %s)\n' % (cust, time_str(time)))
         else:
-            tempo = self.stopwatch_test.elapsed_str()
-            self._write('OK (tempo: %s)\n' % (tempo,))
+            time = test_result.program_result.time
+            self._write(u'OK (tempo: %s)\n' % (time_str(time),))
 
 def get_formatted_checkers():
     return '|'.join(sorted(c for c in CHECKERS))
@@ -58,17 +53,17 @@ def main():
         print u'Número inválido de parâmetros'
         show_usage()
         sys.exit(1)
-    cases_path, progs_path, alg = sys.argv[1:]
+    cases_path, progs_path, alg = [x.decode('utf-8') for x in sys.argv[1:]]
     if alg not in CHECKERS:
         print u'Algoritmo inválido:', alg
         show_usage()
         sys.exit(1)
-    if alg.startswith('tsp-'):
-        cases_path = os.path.join(cases_path, 'tsp')
-        ext = '.tsp'
+    if alg.startswith(u'tsp-'):
+        cases_path = os.path.join(cases_path, u'tsp')
+        ext = u'.tsp'
     else:
         cases_path = os.path.join(cases_path, alg)
-        ext = '.g'
+        ext = u'.g'
     cases = load_cases(cases_path, in_ext=ext)
     validade_cases(cases_path, cases)
     progs = load_progs_info(progs_path, run_params = [alg])
@@ -76,4 +71,8 @@ def main():
     run_progs_cases(CHECKERS[alg], progs, cases, MyReporter())
 
 if __name__ ==  '__main__':
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        print
+        print u'Interrompido'

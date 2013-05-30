@@ -17,10 +17,13 @@ class TestCase(object):
         self.description = description
         self.program = program
         self.check = check
+        self.stopwatch = Stopwatch()
 
     def run(self):
         try:
+            self.stopwatch.start()
             program_result = self.program()
+            program_result.time = self.stopwatch.elapsed()
             test_result = TestResult(self, program_result)
             self.check(test_result, program_result)
             return test_result
@@ -111,7 +114,7 @@ class SimpleReporter(Reporter):
         self.stopwatch.start()
 
     def end(self):
-        elapsed = self.stopwatch.elapsed_str()
+        elapsed = time_str(self.stopwatch.elapsed())
         self._write(u'Total: %d  Errors: %d (%s)\n' % (self.total, self.total - self.success, elapsed))
 
     def start_test(self, test_case):
@@ -165,23 +168,28 @@ class Stopwatch(object):
 
     def elapsed(self):
         self._elapsed = time() - self._started
-        return self._elapsed
+        return int(1000 * self._elapsed)
 
-    def _ms(self, elapsed):
-        return str(int(elapsed * 1000)) + 'ms'
+def units(value, prefix, last_prefix):
+    r = []
+    for factor, symbol in prefix:
+        d = value % factor
+        value = value / factor
+        r.append((d, symbol))
+        if value == 0:
+            break
+    if value != 0:
+        r.append((value, last_prefix))
+    return r
 
-    def elapsed_str(self):
-        elapsed = self.elapsed()
-        if elapsed < 1:
-            return self._ms(elapsed)
-        elif elapsed < 60:
-            return '%ds %s' % (int(elapsed), self._ms(elapsed % 1))
-        else:
-            return '%dm %ds %s' % (int(elapsed) / 60, int(elapsed) % 60, self._ms(elapsed % 1))
+def time_str(value):
+    r = units(value, [(1000, 'ms'), (60,  's'), (60,  'm'), (60,  'h')], 'd')
+    r = list(reversed(r))[:2]
+    return ' '.join(['%d%s' % (v, u) for v, u in r])
 
 # utilities
 def exec_program(cmd):
     from subprocess import Popen, PIPE
     p = Popen(cmd, stdout=PIPE, stderr=PIPE)
     out, err = p.communicate()
-    return ProgramResult(p.returncode, out, err)
+    return ProgramResult(p.returncode, out.decode('utf-8'), err.decode('utf-8'))

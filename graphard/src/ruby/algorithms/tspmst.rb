@@ -2,47 +2,40 @@ def tspMst(graph)
 	r = graph.getPlane.first[0]
 	mstPrim(graph,r)
 	tree = createTree(graph)
-	custo,path = createPath(graph,tree)
-	return custo,path
+	cost,path = createPath(graph,tree)
+	return cost,path
 end
 
 def mstPrim(graph,r)
-	graph.getPlane.each do |index,value|
-		graph.setKey(index,Float::INFINITY)
-		graph.setFather(index,nil)
+	graph.getPlane.each do |vertex,value|
+		graph.setKey(vertex,Float::INFINITY)
+		graph.setFather(vertex,nil)
 	end
 	graph.setKey(r,0)
-	graphDump = Marshal.load(Marshal.dump(graph))
 	q = []
-	graph.getPlane.each do |index,value|
-		q.push(VertexKEY.new(index,graph.getKey(index)))
+	graph.getPlane.each do |vertex,value|
+		q.push(VertexKEY.new(vertex,graph.getKey(vertex)))
 	end
 	heap = Heapmin.new
 	while (!q.empty?)
-		heap.buildHeap(q)
-		u = heap.extractRoot(q) #extract min in this case
-		graphDump.getPlane.delete(u.vertex)
-		graphDump.getPlane.each do |index,value|
-			distance = graph.getDistance(u.vertex.to_i,index.to_i) 
-			if (distance < graph.getKey(index))
-				graph.setKey(index,distance)
-				graph.setFather(index,u)
-				q.each do |v|
-					if (index == v.vertex)
-						v.key = distance
-					end
-				end
-			end	
+		u = heap.extractRoot(q)
+		q.each do |vertex|
+			distance = graph.getDistance(u.getVertex.to_i,vertex.getVertex.to_i) 
+			if (distance < graph.getKey(vertex.getVertex))
+				graph.setKey(vertex.getVertex,distance)
+				graph.setFather(vertex.getVertex,u)
+				vertex.setKey(distance)
+			end
 		end
 	end
 end
 
 def createTree(graph)
-	tree = Hash.new { |key,value| key[value] = [] }
-	graph.getPlane.each do |index,value|
+	tree = Hash.new { |key,value| key[value] = Vertex.new }
+	graph.getPlane.each do |index,v|
 		v = graph.getFather(index)
 		if (!v.nil?)
-			tree[v.vertex].push(index)
+			tree[v.getVertex].addAdj(index)
 		else tree[index]
 		end	
 	end
@@ -53,30 +46,17 @@ def createPath(graph,tree)
 	path = []
 	preOrder(tree,tree.first[0],path)
 	path.push(tree.first[0])
-	custo = 0
-	for i in 0..path.size-1
-		if (i!=path.size-1)
-			custo+=graph.getDistance(path[i].to_i,
-				path[i+1].to_i)
-		end
-	end
-	return custo,path
+	cost = graph.calculateCost(path)
+	return cost,path
 end
 
 def preOrder(tree,father,path)
 	path.push(father)
 	if (tree.has_key?(father))
 		sons = tree[father]
-		while (!sons.empty?)
-			descent = getSon(sons)
+		while (!sons.getEdges.empty?)
+			descent = sons.rmEdge(sons.getEdges.first[0])
 			preOrder(tree,descent,path)
 		end
 	end
-end
-
-def getSon(sons)
-	temp = sons[0]
-	sons[0] = sons[sons.size-1]
-	sons[sons.size-1] = temp
-	return sons.pop
 end

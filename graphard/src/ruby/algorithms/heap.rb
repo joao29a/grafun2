@@ -19,6 +19,7 @@ class Heap
 	end
 
 	def extractRoot(container)
+		buildHeap(container)
 		if (container.size-1 > 0)
 			aux = container[0]
 			container[0] = container[container.size-1]
@@ -26,6 +27,7 @@ class Heap
 		end
 		return container.pop
 	end
+	
 end
 
 class Heapmax < Heap
@@ -57,11 +59,4 @@ class Heapmin < Heap
 		end
 		return index
 	end
-end
-
-def printArray(container)
-	container.each do |key|
-		print "#{key.vertex} -> #{key.key} | "
-	end
-	puts
 end

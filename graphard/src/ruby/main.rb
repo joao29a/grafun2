@@ -32,17 +32,20 @@ else
 		cost,tspPath = tspNN(plane)
 	
 	elsif("tsp-mst"==ARGV[0])
+
 		cost,tspPath = tspMst(plane)
 
 	elsif("tsp-nn-2opt"==ARGV[0])
 		cost,tspPath = tspNN(plane)
-		cost,tspPath = tsp2opt(tspPath,cost,plane)
+		tspPath = tsp2opt(tspPath,plane)
+		cost = plane.calculateCost(tspPath)
 
 	elsif("tsp-mst-2opt"==ARGV[0])
 		cost,tspPath = tspMst(plane)
-		cost,tspPath = tsp2opt(tspPath,cost,plane)
-
+		tspPath = tsp2opt(tspPath,plane)
+		cost = plane.calculateCost(tspPath)
 	end
+	
 	puts cost
 	printVertexs(tspPath)
 end
