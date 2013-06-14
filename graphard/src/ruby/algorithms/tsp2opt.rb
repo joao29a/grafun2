@@ -18,18 +18,18 @@ def tsp2opt(t,g)
 				else
 					d = 0
 				end
-					
-				
+
+
 				old_dist = 
-				  g.getDistance(t[a].to_i,t[b].to_i) 
+					g.getDistance(t[a].to_i,t[b].to_i) 
 				+ g.getDistance(t[c].to_i,t[d].to_i)
 
 				new_dist = g.getDistance(t[a].to_i,t[c].to_i)
 				+ g.getDistance(t[b].to_i,t[d].to_i)
-						
+
 				delta = old_dist - new_dist
 
-	
+
 				if delta > deltaMax
 					deltaMax = delta
 					best = [a,b,c,d]
